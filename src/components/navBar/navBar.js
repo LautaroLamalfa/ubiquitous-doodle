@@ -2,15 +2,16 @@ import './navBar.css';
 export const NavBar = () => {
     return (
         <header>
-            <nav>
+            <nav className="navbar">
                 <div>
-                    <h2>Peliculas</h2>
+                    <h1>El control Remoto</h1>
                 </div>
                 <div>
-                    <h1>El Control Remoto</h1>
-                </div>
-                <div>
-                    <h2>Series</h2>
+                    <ul className="navbar-container">
+                        <li>Peliculas</li>
+                        <li>Series</li>
+                        <li>Ambiente</li>
+                    </ul>
                 </div>
             </nav>
         </header>

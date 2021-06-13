@@ -1,9 +1,25 @@
-header {
-    display: flex;
-    justify-content: center;
-    background-color: khaki;
-    color: brown;
+.navbar {
+    background-color: aquamarine;
+    color: blue;
     font-family: 'Times New Roman', Times, serif;
     line-height: 1.6;
     letter-spacing: 1.2px;
 }
+
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar-container li {
+    list-style: none;
+    color:tomato;
+    border: 2.5px solid transparent;
+}
+
+.navbar-container li:hover {
+    border: 2.5px solid black;
+    background-color: black;
+    color: aquamarine;
+} 
