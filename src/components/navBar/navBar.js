@@ -1,5 +1,5 @@
 import './navBar.css';
-export const NavBar = () => {
+export const NavBar = ({ children}) => {
     return (
         <header>
             <nav className="navbar">
@@ -13,6 +13,7 @@ export const NavBar = () => {
                         <li>Ambiente</li>
                     </ul>
                 </div>
+                <div>{children}</div>
             </nav>
         </header>
     )
