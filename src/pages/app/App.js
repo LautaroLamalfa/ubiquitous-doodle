@@ -7,12 +7,7 @@ function App() {
   const fullname = `${Name} ${LastName}`
   return (
     <div className="App">
-      <NavBar>
-        <span>
-          <p>hola</p>
-          <p>chau</p>
-        </span>
-      </NavBar>
+      <NavBar/>
       <section>
         <h1>Hola, me llamo {fullname} </h1>
       </section>

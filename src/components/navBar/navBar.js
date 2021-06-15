@@ -1,10 +1,11 @@
 import './navBar.css';
-export const NavBar = ({ children}) => {
+export const NavBar = () => {
     return (
         <header>
             <nav className="navbar">
                 <div>
                     <h1>El control Remoto</h1>
+                    <img src="Logo.png" alt="logo"></img>
                 </div>
                 <div>
                     <ul className="navbar-container">
@@ -13,7 +14,6 @@ export const NavBar = ({ children}) => {
                         <li>Ambiente</li>
                     </ul>
                 </div>
-                <div>{children}</div>
             </nav>
         </header>
     )
