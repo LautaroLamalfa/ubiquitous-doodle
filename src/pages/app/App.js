@@ -11,7 +11,6 @@ function App() {
       <section>
         <h1>Hola, me llamo {fullname} </h1>
       </section>
-      <h2>Esta funcionando</h2>
     </div>
   );
 }
