@@ -1,15 +1,14 @@
 import './App.css';
 import { NavBar } from "../../components/navBar/navBar"
+import { ItemList } from "../../components/ItemListContainer/itemListContainer"
 
 function App() {
-  const Name = 'lautaro'
-  const LastName = 'lamalfa'
-  const fullname = `${Name} ${LastName}`
+  const mensaje = 'Proximamente tendremos mas articulos para vender'
   return (
     <div className="App">
       <NavBar/>
       <section>
-        <h1>Hola, me llamo {fullname} </h1>
+        <ItemList user = {mensaje}/>
       </section>
     </div>
   );
