@@ -1,7 +1,7 @@
 import './App.css';
 import { NavBar } from "../../components/navBar/navBar"
 import { ItemList } from "../../components/ItemListContainer/itemListContainer"
-import { ItemCount } from "../../components/ItemCount/ItemCount"
+import { ItemCount } from "../../components/ItemCount/itemCount"
 
 function App() {
   const mensaje = 'Proximamente tendremos mas articulos para vender'
