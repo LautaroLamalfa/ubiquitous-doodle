@@ -14,7 +14,7 @@ export const ItemCount = ({inicial, stock, onAdd})=> {
     const sumar = ()=> {
         if (nuevoStock !==0) {
             setContador(contador + 1)
-            setStock(nuevoStock + 1);
+            setStock(nuevoStock - 1);
         }
     }
 
