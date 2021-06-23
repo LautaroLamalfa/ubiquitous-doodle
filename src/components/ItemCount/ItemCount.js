@@ -3,7 +3,7 @@ import {useState} from "react"
 export const ItemCount = ({inicial, stock, onAdd, message})=> {
     const [contador, setContador] = useState(inicial)
     const [nuevoStock, setStock] = useState(stock)
-    const [onAdd, setOnAdd] = useState ('')
+    const [onAdd, setOnAdd] = useState (onAdd)
     const [message, setMessage] = useState('')
 
     const restar = ()=>{
