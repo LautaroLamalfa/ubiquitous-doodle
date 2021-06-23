@@ -11,7 +11,7 @@ function App() {
       <section>
         <ItemList user = {mensaje}/>
       </section>
-        <ItemCount inicial={1} stock={10} onAdd={"Hola"}/>
+        <ItemCount inicial={1} stock={9} onAdd={"Hola"}/>
       <section>
         
       </section>
