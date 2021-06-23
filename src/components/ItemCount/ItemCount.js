@@ -22,6 +22,7 @@ export const ItemCount = ({inicial, stock, onAdd, message})=> {
 
     const carrito = ()=> {
         if (contador > 1) {
+            setOnAdd (onAdd = contador ) 
             setMessage ('Gracias por su compra!')
         }
     }
