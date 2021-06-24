@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 
 export const ItemCount = ({inicial, stock, onAdd, message})=> {
     const [contador, setContador] = useState(inicial)
@@ -25,6 +25,8 @@ export const ItemCount = ({inicial, stock, onAdd, message})=> {
             setMessage ('Gracias por su compra!')
         }
     }
+
+    useEffect(carrito,[contador > 1])
 
     return(
         <>
