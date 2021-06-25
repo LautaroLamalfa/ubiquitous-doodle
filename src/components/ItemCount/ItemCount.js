@@ -1,41 +1,45 @@
-import {useState} from "react"
+import './itemCount.css'
+import { useState } from 'react'
 
-export const Counter = ({inicial, stock})=> {
-    const [contador, setContador] = useState(inicial)
-    const [nuevoStock, setStock] = useState(stock)
-    const [onAdd, setOnAdd] = useState ()
-      const restar = ()=>{
-        if (contador > 1 ) {
-            setContador(contador - 1);
-            setStock(nuevoStock + 1);
-        }
+export const Counter = ({stock = 0, initial = 0, onAdd}) => {
+  const[contador, setContador] = useState(initial);
+
+  const handleClick = (action) => {
+    let temporalValue;
+
+    if (action === "-" && parseInt(contador) > 0) {
+      temporalValue = parseInt(contador) - 1;
+    } else if (action === "+" && parseInt(stock) > parseInt(contador)) {
+      temporalValue = parseInt(contador) + 1;
+    } else {
+      temporalValue = parseInt(contador)
     }
 
-    const sumar = ()=> {
-        if (nuevoStock !==0) {
-            setContador(contador + 1)
-            setStock(nuevoStock - 1);
+    setContador(temporalValue)
+  };
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => {
+          handleClick("-")
+        }} > -     
+        </button>
+
+        <span>{contador}</span>       
+
+        <button onClick={() => {
+          handleClick("+")
+        }} > +     
+        </button>
+      </div>
+      <button onClick={() => {
+        if (stock !== 0) {
+          onAdd()
         }
-    }
-
-
-
-    return(
-        <>
-
-            <div>
-                <button onClick={restar}>-</button>
-                <span>{contador}</span>
-                <button onClick={sumar}>+</button>
-            </div>
-            <button 
-            onClick={() => {
-                if (contador !== 0) {
-                    onAdd();
-                }
-            }}>Agregar al carrito</button>
-            
-        </>
-
-    )
-}
+      }}>
+        Agregar al carrito
+      </button>
+    </div>
+  );
+};
