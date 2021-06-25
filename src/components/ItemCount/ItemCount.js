@@ -1,12 +1,10 @@
-import {useEffect, useState} from "react"
+import {useState} from "react"
 
-export const ItemCount = ({inicial, stock, onAdd, message})=> {
+export const Counter = ({inicial, stock})=> {
     const [contador, setContador] = useState(inicial)
     const [nuevoStock, setStock] = useState(stock)
-    const [onAdd, setOnAdd] = useState (onAdd)
-    const [message, setMessage] = useState('')
-
-    const restar = ()=>{
+    const [onAdd, setOnAdd] = useState ()
+      const restar = ()=>{
         if (contador > 1 ) {
             setContador(contador - 1);
             setStock(nuevoStock + 1);
@@ -20,13 +18,7 @@ export const ItemCount = ({inicial, stock, onAdd, message})=> {
         }
     }
 
-    const carrito = ()=> {
-        if (contador > 1) {
-            setMessage ('Gracias por su compra!')
-        }
-    }
 
-    useEffect(carrito,[contador > 1])
 
     return(
         <>
@@ -36,8 +28,13 @@ export const ItemCount = ({inicial, stock, onAdd, message})=> {
                 <span>{contador}</span>
                 <button onClick={sumar}>+</button>
             </div>
-            <button onClick={carrito}>Agregar al carrito</button>
-            <p>{message}</p>
+            <button 
+            onClick={() => {
+                if (contador !== 0) {
+                    onAdd();
+                }
+            }}>Agregar al carrito</button>
+            
         </>
 
     )
