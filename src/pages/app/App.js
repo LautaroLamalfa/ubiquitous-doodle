@@ -2,7 +2,6 @@ import './App.css';
 import { NavBar } from "../../components/navBar/navBar"
 import { Container } from '../../components/ItemListContainer/itemListContainer';
 import { Counter } from "../../components/ItemCount/itemCount"
-import { render } from 'react-dom';
 
 function App() {
   return (

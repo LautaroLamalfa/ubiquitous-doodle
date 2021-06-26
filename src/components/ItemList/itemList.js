@@ -1,11 +1,13 @@
-import './itemList.css'
-import React from "react"
+import './itemList.css'     
+import { Item } from "../Item/Item"
 
 
-export const List= ({items}) => {
+export const List= ({ items }) => {
+
+    console.log(items);
     return (
-        <div>
-            {items}
-        </div>
+        <>
+            {items !== [] && items.map(Item => <Item item={item}/>) }
+        </>
     )
 }
