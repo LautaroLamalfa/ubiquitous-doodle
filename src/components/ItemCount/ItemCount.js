@@ -27,7 +27,7 @@ export const Counter = ({inicial, stock, onAdd})=> {
               <span>{contador}</span>
               <button onClick={sumar}>+</button>
           </div>
-          <button disabled="true" onClick={onAdd}> Agregar al carrito </button>
+          <button disabled={contador === 0? "true" : "false"} onClick={onAdd}> Agregar al carrito </button>
       </>
         )
   }

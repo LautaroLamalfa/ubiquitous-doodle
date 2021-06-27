@@ -1,6 +1,6 @@
 import './itemListContainer.css'
 import { List } from '../ItemList/itemList'
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 
 export const Container = () => {
@@ -32,17 +32,23 @@ export const Container = () => {
 
     ]
 
-  const nuevaPromesa = new Promise((resolve, rej) => {
 
-    setTimeout(() => {
-      resolve(Productos)
-    }, 2000);
-  })  
+    useEffect(() => {
 
-  nuevaPromesa.then((resolve) => {
-    console.log(resolve);
-    setCatalogo(resolve)
-  })
+      const nuevaPromesa = new Promise((resolve, rej) => {
+    
+        setTimeout(() => {
+          resolve(Productos)
+          rej()
+        }, 2000);
+      })
+    
+      nuevaPromesa.then((resolve) => {
+        console.log(resolve);
+        setCatalogo(resolve)
+      })
+
+    },[])
 
   
     return(
