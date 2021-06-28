@@ -6,7 +6,7 @@ export const Counter = ({inicial, stock, onAdd})=> {
   const [nuevoStock, setStock] = useState(stock)
 
   const restar = ()=>{
-      if (contador > 1 ){
+      if (contador > 0 ){
           setContador(contador - 1);
           setStock(nuevoStock + 1);
       }
@@ -27,7 +27,7 @@ export const Counter = ({inicial, stock, onAdd})=> {
               <span>{contador}</span>
               <button onClick={sumar}>+</button>
           </div>
-          <button disabled={contador === 0? "true" : "false"} onClick={onAdd}> Agregar al carrito </button>
+          <button disabled={"true"} onClick={onAdd}> Agregar al carrito </button>
       </>
         )
   }

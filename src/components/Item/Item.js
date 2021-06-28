@@ -13,7 +13,7 @@ export const Item = ({ item }) => {
             
          <p><span>{item.stock} Unidades</span></p>
 
-        {<Counter inicial={1} stock={9} onAdd={"Hola"}/>}
+        {<Counter inicial={0} stock={10} onAdd={"Hola"}/>}
         </>
     )
 }
