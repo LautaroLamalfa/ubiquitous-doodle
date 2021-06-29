@@ -4,17 +4,16 @@ export const Item = ({ item }) => {
 
     console.log(item);
     return (
-        <>
-         <h1><span>{item.title}</span></h1>
-            
-         <p><span>{item.description}</span></p>
-            
-         <p>Precio:<span>{item.price}</span></p>
-            
-         <p><span>{item.stock} Unidades</span></p>
+        <ul className="container">
+            <h1><span>{item.title}</span></h1>
+                
+            <li><span>{item.description}</span></li>
+                
+            <li>Precio:<span>{item.price}</span></li>
+                
+            <li><span>{item.stock} Unidades</span></li>
 
         {<Counter inicial={0} stock={10} onAdd={"Hola"}/>}
-        </>
+        </ul>
     )
 }
-

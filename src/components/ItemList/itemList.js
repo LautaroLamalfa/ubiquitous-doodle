@@ -10,10 +10,7 @@ export const List= ({ items }) => {
         
         {items.map((item) => {
             return <Item key={item.title} item={item}/> 
-        })}
-
-        )
-        
+        })}  
         </>
     )
 }

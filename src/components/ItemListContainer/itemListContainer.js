@@ -7,7 +7,7 @@ export const Container = () => {
   const [catalogo, setCatalogo] = useState([])
     const Productos = [{
         id: '1', 
-        title: 'sofa', 
+        title: 'Sofa', 
         description: 'marron,', 
         stock: '3',
         price: '$60',
@@ -47,13 +47,17 @@ export const Container = () => {
         console.log(resolve);
         setCatalogo(resolve)
       })
-
+// eslint-disable-next-line
     },[])
 
   
     return(
       <>
+        {List.length === 0 ? (
+          <span>Cargango...</span>
+        ) : (
         <List items={catalogo}/>
+        )}
       </>
     )
   
