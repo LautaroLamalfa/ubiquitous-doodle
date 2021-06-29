@@ -34,7 +34,6 @@ export const Container = () => {
 
 
     useEffect(() => {
-
       const nuevaPromesa = new Promise((resolve, rej) => {
     
         setTimeout(() => {
@@ -54,7 +53,7 @@ export const Container = () => {
     return(
       <>
         {List.length === 0 ? (
-          <span>Cargango...</span>
+          <span>Cargando...</span>
         ) : (
         <List items={catalogo}/>
         )}
