@@ -52,7 +52,7 @@ export const Container = () => {
   
     return(
       <>
-        {List.length === 0 ? (
+        {catalogo.length === 0 ? (
           <span>Cargando...</span>
         ) : (
         <List items={catalogo}/>

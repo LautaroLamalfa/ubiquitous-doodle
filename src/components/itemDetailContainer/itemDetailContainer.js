@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import { DList } from "../itemDetail/itemDetail"
 
 
-export const dContainer = () => {
+export const DContainer = () => {
     const [item, setItem] = useState()
       const Producto = { 
           title: 'Sofa', 
