@@ -3,9 +3,9 @@ import {useState, useEffect} from "react"
 import { List } from '../ItemList/itemList'
 import { useParams } from "react-router";
 import Loader from "react-loader-spinner";
-import One from '../../Assets/Imagenes/imagenes'
-import Two from '../../Assets/Imagenes/imagenes'
-import Three from '../../Assets/Imagenes/imagenes'
+import {One} from '../../Assets/Imagenes/imagenes'
+import {Two} from '../../Assets/Imagenes/imagenes'
+import {Three} from '../../Assets/Imagenes/imagenes'
 
 
 export const Container = () => {

@@ -7,10 +7,10 @@ export const Item = ({ item }) => {
     console.log(item);
     return (
         <article id={id} className="container">
+                <h2>{title}</h2>   
             <Link to={`/item/${id}`}>
                 <img src={picture} alt='Foto'/>
             </Link>
-                <h2>{title}</h2>   
                 <h3>Precio:{price}</h3>
                 <p>{description}</p>
                 <h3>{stock}</h3>
