@@ -1,7 +1,11 @@
-import {useState, useEffect} from "react"
-import { useParams } from "react-router";
 import './itemListContainer.css'
+import {useState, useEffect} from "react"
 import { List } from '../ItemList/itemList'
+import { useParams } from "react-router";
+import Loader from "react-loader-spinner";
+import One from '../../Assets/Imagenes/imagenes'
+import Two from '../../Assets/Imagenes/imagenes'
+import Three from '../../Assets/Imagenes/imagenes'
 
 
 export const Container = () => {
@@ -16,7 +20,7 @@ export const Container = () => {
         description: 'Marron', 
         stock: '3',
         price: '$60',
-        pictureURL: '',
+        picture: Two,
         categoryId: 'Ambiente'
       },
       {
@@ -25,7 +29,7 @@ export const Container = () => {
         description: '55 pulgadas', 
         stock: '3',
         price: '$120',
-        pictureURL: '',
+        picture: Three,
         categoryId: 'Televisores'
       },
       {
@@ -34,7 +38,7 @@ export const Container = () => {
         description: 'Blu-ray o en version digital', 
         stock: '10',
         price: '$12',
-        pictureURL: '',
+        picture: One,
         categoryId: 'Peliculas y Series'
       },
       
@@ -49,33 +53,21 @@ export const Container = () => {
           rej()
         }, 2000);
       })
-      
-      nuevaPromesa.then((resolve) => {
-        console.log(resolve);
-        setCatalogo(resolve)
+      nuevaPromesa.then((Productos) => {
+        const detalleProducto = id ? Productos.filter((item) => item.categoryId === id) : Productos 
+          setCatalogo(detalleProducto)
       })
 // eslint-disable-next-line
-    },[])
-    
-    useEffect(() => { 
-      const getCatalogo = () => {
-        return id ? Productos.filter((item) => item.categoryId === id) : Productos
-      }
-      
-      const items = getCatalogo()
-      setCatalogo(items)
-// eslint-disable-next-line
-    }, [id])
+    },[id])
     
     return(
       <>
         {catalogo.length === 0 ? (
-          <span>Cargando...</span>
+          <Loader type="Circles" color="#00BFFF" height={80} width={80} /> 
         ) : (
         <List items={catalogo}/>
         )}
       </>
     )
-    
   };
   
