@@ -7,17 +7,13 @@ export const Item = ({ item }) => {
     console.log(item);
     return (
         <Link to={`/item/${id}`}>
-            <ul className="container">
-                <h1>{title}</h1>
-                    
-                <li>{description}</li>
-                    
-                <li>Precio:{price}</li>
-                    
-                <li>{stock}</li>
-
+            <article id={id} className="container">
+                <h2>{title}</h2>   
+                <h3>Precio:{price}</h3>
+                <p>{description}</p>
+                <h3>{stock}</h3>
             {<Counter inicial={0} stock={10} onAdd={"Hola"}/>}
-            </ul>
+            </article>
         </Link>
     )
 }

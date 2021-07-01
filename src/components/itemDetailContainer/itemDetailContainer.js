@@ -3,7 +3,7 @@ import { DList } from "../itemDetail/itemDetail"
 
 
 export const DContainer = () => {
-    const [item, setItem] = useState()
+  const [item, setItem] = useState()
       const Producto = { 
           title: 'Sofa', 
           description: 'marron,', 
