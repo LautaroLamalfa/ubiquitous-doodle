@@ -57,15 +57,15 @@ export const Container = () => {
 // eslint-disable-next-line
     },[])
     
-//     useEffect(() => { 
-//       const getCatalogo = () => {
-//         return id ? Productos.filter((item) => item.categoryId === id) : Productos
-//       }
+    useEffect(() => { 
+      const getCatalogo = () => {
+        return id ? Productos.filter((item) => item.categoryId === id) : Productos
+      }
       
-//       const items = getCatalogo()
-//       setCatalogo(items)
-// // eslint-disable-next-line
-//     }, [id])
+      const items = getCatalogo()
+      setCatalogo(items)
+// eslint-disable-next-line
+    }, [id])
     
     return(
       <>
