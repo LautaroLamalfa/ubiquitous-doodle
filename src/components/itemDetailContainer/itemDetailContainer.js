@@ -6,6 +6,8 @@ import Data from "../../data/data.json"
 export const DContainer = () => {
   const {id} = useParams()
   const [item, setItem] = useState()
+
+  console.log(id);
       useEffect(() => {
         const nuevaPromesa = new Promise((resolve, rej) => {
           setTimeout(() => {
