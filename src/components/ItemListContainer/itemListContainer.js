@@ -2,53 +2,23 @@ import {useState, useEffect} from "react"
 import { List } from '../ItemList/itemList'
 import { useParams } from "react-router";
 import Loader from "react-loader-spinner";
+import Data from "../../data/data.json"
 
 export const Container = () => {
   const {id} = useParams()
-  const [catalogo, setCatalogo] = useState([])
+  const [catalogo, setCatalogo] = useState()
 
   console.log(id);
-  
-    const Productos = [
-      {
-        id: '1', 
-        title: 'Sofa', 
-        description: 'Marron', 
-        stock: '10 unidades',
-        price: '$60',
-        categoryId: 'Ambiente'
-      },
-      {
-        id: '2', 
-        title: 'Television', 
-        description: '55 pulgadas', 
-        stock: '10 unidades' ,
-        price: '$120',
-        categoryId: 'Televisores'
-      },
-      {
-        id: '3', 
-        title: "Marvel's The Avengers", 
-        description: 'Blu-ray o en version digital', 
-        stock: '10 unidades',
-        price: '$12',
-        categoryId: 'Peliculas y Series'
-      },
-    ]
-    
-    
+   
     useEffect(() => {
       const nuevaPromesa = new Promise((resolve, rej) => {
-        
         setTimeout(() => {
-          resolve(Productos)
-          rej()
+          resolve(Data.filter((item) => item.id === id))
         }, 2000);
-      })
-      nuevaPromesa.then((Productos) => {
-        const detalleProducto = id ? Productos.filter((item) => item.categoryId === id) : Productos 
-          setCatalogo(detalleProducto)
-      })
+      });
+        nuevaPromesa.then((item) => {
+          setCatalogo(item);
+      });
 // eslint-disable-next-line
     },[id])
     
@@ -61,5 +31,5 @@ export const Container = () => {
         )}
       </>
     )
-  };
+}
   

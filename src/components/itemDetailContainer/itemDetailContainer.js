@@ -1,39 +1,26 @@
 import {useState, useEffect} from "react"
-import { DList } from "../itemDetail/itemDetail"
+import { DList } from "../../components/itemDetail/itemDetail"
 import { useParams } from "react-router";
-
+import Data from "../../data/data.json"
 
 export const DContainer = () => {
   const {id} = useParams()
   const [item, setItem] = useState()
-      const Producto = { 
-          title: 'Sofa', 
-          description: 'marron,', 
-          stock: '3',
-          price: '$60',
-          pictureURL: ''
-        }  
-  
-        useEffect(() => {
-          const nuevaPromesa = new Promise((resolve, rej) => {
-            
-            setTimeout(() => {
-              resolve(Producto)
-              rej()
-            }, 2000);
-          })
-          nuevaPromesa.then((Producto) => {
-            const detalleProducto = id ? Producto.filter((item) => item.categoryId === id) : Producto 
-              setItem(detalleProducto)
-          })
-    // eslint-disable-next-line
-        },[id])
-  
-    
+      useEffect(() => {
+        const nuevaPromesa = new Promise((resolve, rej) => {
+          setTimeout(() => {
+            resolve(Data.filter((item) => item.id === id))
+          }, 2000);
+        });
+          nuevaPromesa.then((item) => {
+            setItem(item);
+        });
+  // eslint-disable-next-line
+      },[id])
       return(
-        <>
-          <DList items={item}/>
-        </>
-      )
-    
+      <>
+        <DList items={item}/>
+      </>
+    )
+  
   };
