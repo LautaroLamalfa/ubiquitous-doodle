@@ -1,8 +1,10 @@
 import {useState, useEffect} from "react"
 import { DList } from "../itemDetail/itemDetail"
+import { useParams } from "react-router";
 
 
 export const DContainer = () => {
+  const {id} = useParams()
   const [item, setItem] = useState()
       const Producto = { 
           title: 'Sofa', 
@@ -12,21 +14,20 @@ export const DContainer = () => {
           pictureURL: ''
         }  
   
-      useEffect(() => {
-        const nuevaPromesa = new Promise((resolve, rej) => {
-      
-          setTimeout(() => {
-            resolve(Producto)
-            rej()
-          }, 2000);
-        })
-      
-        nuevaPromesa.then((resolve) => {
-          console.log(resolve);
-          setItem(resolve)
-        })
-  // eslint-disable-next-line
-      },[])
+        useEffect(() => {
+          const nuevaPromesa = new Promise((resolve, rej) => {
+            
+            setTimeout(() => {
+              resolve(Producto)
+              rej()
+            }, 2000);
+          })
+          nuevaPromesa.then((Producto) => {
+            const detalleProducto = id ? Producto.filter((item) => item.categoryId === id) : Producto 
+              setItem(detalleProducto)
+          })
+    // eslint-disable-next-line
+        },[id])
   
     
       return(

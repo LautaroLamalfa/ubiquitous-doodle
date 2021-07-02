@@ -1,4 +1,3 @@
-import './itemList.css'     
 import { Item } from "../Item/Item"
 
 
