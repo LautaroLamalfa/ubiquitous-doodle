@@ -16,7 +16,7 @@ export const Routes = () => {
                     <Route exact path="/category/:id">
                         <Container />
                     </Route>
-                    <Route exact path="/">
+                    <Route exact path="/item/:title">
                         <DContainer />
                     </Route>
                 </Switch>

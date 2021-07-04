@@ -19,7 +19,7 @@ export const DContainer = () => {
       },[id])
       return(
       <>
-        <DList items={item}/>
+        <DList item={item}/>
       </>
     )
   
