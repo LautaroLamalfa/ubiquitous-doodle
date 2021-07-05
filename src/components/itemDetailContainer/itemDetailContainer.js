@@ -5,16 +5,17 @@ import Data from "../../data/data.json"
 
 export const DContainer = () => {
   const {id} = useParams()
-  const [item, setItem] = useState()
+  const [item, setItem] = useState([])
       useEffect(() => {
         const nuevaPromesa = new Promise((resolve, rej) => {
-          setTimeout(() => {
-            resolve(Data.filter((item) => item.id === id))
-          }, 2000);
-        });
-          nuevaPromesa.then((item) => {
-            setItem(item);
-        });
+            setTimeout(() => {
+              resolve(Data.find((item) => item.id == id))
+            }, 2000);
+          });
+            nuevaPromesa.then((item) => {
+              setItem(item[0]);
+            }
+          );
   // eslint-disable-next-line
       },[id])
       return(

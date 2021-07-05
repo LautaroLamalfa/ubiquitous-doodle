@@ -1,7 +1,7 @@
 import {Counter} from '../ItemCount/itemCount'
 
 export const DList= ({ item }) => {
-    const { title, description, price, stock } = item
+    const {title, price, description, stock} = item
 
     console.log(item);
     return (

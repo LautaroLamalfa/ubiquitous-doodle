@@ -5,7 +5,7 @@ export const Item = ({ item }) => {
 
     return (
         <article id={id} className="container">
-            <Link to={`/item/${id}`}>
+            <Link to={`/item/${id}`} id={id}>
                 <h2>{title}</h2>
             </Link>
                 <h3>Precio:{price}</h3>
