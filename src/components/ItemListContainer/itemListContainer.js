@@ -45,17 +45,19 @@ export const Container = () => {
           rej()
         }, 2000);
       })
+
       nuevaPromesa.then((Productos) => {
         const detalleProducto = id ? Productos.filter((item) => item.categoryId === id) : Productos 
           setCatalogo(detalleProducto)
       })
+      
 // eslint-disable-next-line
     },[id])
     
     return(
       <>
         {catalogo.length === 0 ? (
-          <Loader type="Circles" color="#00BFFF" height={80} width={80} /> 
+          <Loader type="Circles" color="#00BFFF" height={120} width={120} /> 
         ) : (
         <List items={catalogo}/>
         )}

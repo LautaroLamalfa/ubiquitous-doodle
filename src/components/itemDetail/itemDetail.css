@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.position {
+    text-align: right;
+}
+
+.titulo {
+    font-size: xx-large;
+}
+
+.foto {
+    float: left;
+}
+

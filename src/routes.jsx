@@ -3,6 +3,7 @@ import {BrowserRouter as Router,  Switch,  Route} from "react-router-dom"
 import { NavBar } from './components/navBar/navBar'
 import { Container } from './components/ItemListContainer/itemListContainer'
 import { DContainer } from './components/itemDetailContainer/itemDetailContainer'
+import { Cart } from './components/shoppingCart/shoppingCart'
 
 export const Routes = () => {
   return (
@@ -18,6 +19,9 @@ export const Routes = () => {
                     </Route>
                     <Route exact path="/item/:id">
                         <DContainer />
+                    </Route>
+                    <Route exact path="/cart">
+                        <Cart/>
                     </Route>
                 </Switch>
         </main>
