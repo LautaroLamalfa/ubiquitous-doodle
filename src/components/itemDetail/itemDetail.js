@@ -10,11 +10,18 @@ export const DList= ({ item }) => {
 
 
     const onAdd = (quantityToAdd) => {
+        console.log(quantityToAdd.target.value);
         setProductoComprado(quantityToAdd.target.value)
         setPrecioCompra((quantityToAdd.target.value)*price)
 
-        document.getElementById("itemDetailBuying")
-        document.getElementById("itemDetailBought")
+        // var value = parseInt(quantityToAdd.target.value)
+        // var newValue = (isNaN(value) ? productoComprado : value)
+        // setProductoComprado(newValue)
+
+
+        document.getElementById("itemComprando").style.display="none"
+        document.getElementById("itemComprado").style.display="block"
+        document.getElementById("continuarComprando").style.display="block"
         
     }
     console.log(item);
@@ -23,16 +30,19 @@ export const DList= ({ item }) => {
         <div>
             <img src="" className="foto" alt="foto"/>
         </div>
-        <div className="container">
+        <div className="container-D">
             <h2 className="titulo">{title}</h2>
             <h3>Precio:{price}</h3>
-            <div id="itemDetailBuying">
+            <div id="itemComprando">
                 <p>{stock} disponibles</p>
                 <Counter stock={stock} onAdd={onAdd}/>
             </div>
-            <div id="itemDetailBought" style={{display:"none"}}>
-                <p>Entonces es {productoComprado} de {title} por ${precioCompra}</p>
+            <div id="itemComprado" style={{display:"none"}}>
+                <p>Entonces compro {productoComprado} de {title} por $ {precioCompra}</p>
                 <Link to={"/cart"}><button>Terminar la compra</button></Link>
+            </div>
+            <div id="continuarComprando" style={{display:'none'}}>
+                <Link to={"/"}><button>Continuar comprando</button></Link>
             </div>
         </div>
         <div>
@@ -40,4 +50,4 @@ export const DList= ({ item }) => {
         </div>
     </article>
     )
-}   
+}
