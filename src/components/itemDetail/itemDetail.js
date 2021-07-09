@@ -1,29 +1,24 @@
 import './itemDetail.css'
 import { useState } from 'react';
 import {Counter} from '../ItemCount/itemCount'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export const DList= ({ item }) => {
     const {id, title, price, description, stock=10} = item
     const [productoComprado, setProductoComprado] = useState(0)
-    const [precioCompra, setPrecioCompra] = useState(0)
+    const history = useHistory()
 
 
-    const onAdd = (quantityToAdd) => {
-        console.log(quantityToAdd.target.value);
-        setProductoComprado(quantityToAdd.target.value)
-        setPrecioCompra((quantityToAdd.target.value)*price)
+    const onAdd = (producto) => {
+        setProductoComprado(producto)
 
-        // var value = parseInt(quantityToAdd.target.value)
-        // var newValue = (isNaN(value) ? productoComprado : value)
-        // setProductoComprado(newValue)
-
-
-        document.getElementById("itemComprando").style.display="none"
         document.getElementById("itemComprado").style.display="block"
-        document.getElementById("continuarComprando").style.display="block"
-        
     }
+
+    const finalizarCompra = () => {
+        history.push("/cart")
+    }
+    
     console.log(item);
     return (
     <article className="position" id={id}>
@@ -33,16 +28,12 @@ export const DList= ({ item }) => {
         <div className="container-D">
             <h2 className="titulo">{title}</h2>
             <h3>Precio:{price}</h3>
-            <div id="itemComprando">
-                <p>{stock} disponibles</p>
+            <div>
                 <Counter stock={stock} onAdd={onAdd}/>
             </div>
             <div id="itemComprado" style={{display:"none"}}>
-                <p>Entonces compro {productoComprado} de {title} por $ {precioCompra}</p>
-                <Link to={"/cart"}><button>Terminar la compra</button></Link>
-            </div>
-            <div id="continuarComprando" style={{display:'none'}}>
-                <Link to={"/"}><button>Continuar comprando</button></Link>
+                <p>Entonces seran {productoComprado} {title}</p>
+                <Link to={"/cart"}><button onClick={finalizarCompra}>Terminar la compra</button></Link>
             </div>
         </div>
         <div>
