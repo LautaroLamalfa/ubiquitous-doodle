@@ -11,8 +11,7 @@ export const DList= ({ item }) => {
 
     const onAdd = (producto) => {
         setProductoComprado(producto)
-
-        document.getElementById("itemComprado").style.display="block"
+      
     }
 
     const finalizarCompra = () => {
@@ -31,7 +30,8 @@ export const DList= ({ item }) => {
             <div>
                 <Counter stock={stock} onAdd={onAdd}/>
             </div>
-            <div id="itemComprado" style={{display:"none"}}>
+            
+            <div>
                 <p>Entonces seran {productoComprado} {title}</p>
                 <Link to={"/cart"}><button onClick={finalizarCompra}>Terminar la compra</button></Link>
             </div>
