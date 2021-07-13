@@ -2,40 +2,53 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext()
 
-export const CartUser = ({ children, defaulCart }) => {
-    const [userCart, setUserCart] = useState(defaulCart)
+export const CartUser = ({ children}) => {
+    const [userCart, setUserCart] = useState([])
+    const [products, setProducts] = useState([])
 
-    const removeItem = (itemId) => {
-        const newCart = userCart.slice()
-        const filterCart = newCart.filter(objeto => objeto.item.id !== itemId)
-        setUserCart(filterCart)
+    function removeItem (itemId) {
+        setProducts(products.filter(product => product.itemId !== itemId))
     }
 
-    const addItem = (item, contador) => {
-        if (isInCart(item.id)) {
-            console.log('Item ya existe en carrito');
-            const object = userCart.find(objeto => objeto.item.id === item.id)
-            object.contador += contador
+    function addToCart (item, contador) {
+        const isInCart = products.some( product => product.item.id === item[0].id)
+        if (!isInCart) {
+            const nuevoItem = {
+                item: {
+                    ...item[0]
+                },
+                quantity: contador
+            }
+            setProducts([...products, nuevoItem])
         } else {
-            updateCart({item,contador})
+            products.forEach( product => {
+                // eslint-disable-next-line
+                if(product.item.id == item[0].id) {
+                    return product.quantity += contador
+                }
+            })
+            setProducts([...products]);
+
         }
     }
 
     const clearCart = () => {
         console.log('Carrito borrado');
-        setUserCart(defaulCart)
+        setUserCart([])
     }
 
-    const isInCart = (itemId) => {
-        return userCart.find(objecto => objecto.item.id === parseInt(itemId)) ? true : false
+    function addItem (item, contador) {
+        products.forEach( product => {
+            // eslint-disable-next-line
+            if(product.item.id == item.id) {
+                return product.quantity += contador
+            }
+        })
+        setProducts([...products]);
     }
 
-    const updateCart = (objeto) => {
-        setUserCart([{...userCart, objeto}])
-    }
 
-
-    return <CartContext.Provider value={{removeItem, clearCart, addItem, updateCart}}>
+    return <CartContext.Provider value={{userCart, products ,removeItem, clearCart, addItem, addToCart}}>
                 {children}
            </CartContext.Provider>
 }

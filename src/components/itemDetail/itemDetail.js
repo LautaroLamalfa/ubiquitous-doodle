@@ -1,44 +1,49 @@
 import './itemDetail.css'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {Counter} from '../ItemCount/itemCount'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { CartContext } from '../../context/cartContext'
 
 export const DList= ({ item }) => {
     const {id, title, price, description, stock=10} = item
-    const [productoComprado, setProductoComprado] = useState(0)
-    const history = useHistory()
+    const [productoComprado, setProductoComprado] = useState('')
 
+    const { addToCart } = useContext(CartContext)
 
-    const onAdd = (producto) => {
-        setProductoComprado(producto)
+    const onAdd = (contador) => {
+        if (contador > 0) {
+            setProductoComprado(contador)
+            addToCart(item, contador)
+        } 
+        
       
     }
 
-    const finalizarCompra = () => {
-        history.push("/cart")
-    }
-    
-    console.log(item);
     return (
-    <article className="position" id={id}>
-        <div>
-            <img src="" className="foto" alt="foto"/>
-        </div>
-        <div className="container-D">
-            <h2 className="titulo">{title}</h2>
-            <h3>Precio:{price}</h3>
-            <div>
-                <Counter stock={stock} onAdd={onAdd}/>
-            </div>
-            
-            <div>
-                <p>Entonces seran {productoComprado} {title}</p>
-                <Link to={"/cart"}><button onClick={finalizarCompra}>Terminar la compra</button></Link>
-            </div>
-        </div>
-        <div>
-            <p className="container">Descripcion: {description}</p>
-        </div>
-    </article>
+        <>
+            { item ? (
+                <div>
+                    <div className="container-D">
+                        <h2 className="titulo">{title}</h2>
+                        <h3>Precio:{price}</h3>
+                    </div>
+                    <div className="position" id={id}>
+                        <img src="" className="foto" alt="foto"/>
+                    </div>
+                        <div className="container-D">
+                            <Counter stock={stock} onAdd={onAdd}/>             
+                            <p>Entonces seran {productoComprado} {title}</p>
+                            { productoComprado ? (<Link to={"/cart"}><button>Terminar la compra</button></Link>) : ''}
+                        </div>
+                    <div>
+                        <p className="container">Descripcion: {description}</p>
+                    </div>
+                </div>
+        ) : ( 
+            <>
+            <span>...</span>
+            </>
+        )}
+        </>
     )
 }

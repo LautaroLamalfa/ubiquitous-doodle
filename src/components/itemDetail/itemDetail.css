@@ -3,7 +3,7 @@
 }
 
 .container-D {
-        display: inline-block;
+        display:ruby;
         padding: 0 50px 30px;
         border: 2px double red ;
         border-radius: 25px;
@@ -11,7 +11,7 @@
 }
 
 .position {
-    text-align: right;
+    text-align:center;
 }
 
 .titulo {
