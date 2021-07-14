@@ -16,7 +16,6 @@ export const DList= ({ item }) => {
             addToCart(item, contador)
         } 
         
-      
     }
 
     return (

@@ -4,11 +4,9 @@ import { NavBar } from './components/navBar/navBar'
 import { Container } from './components/ItemListContainer/itemListContainer'
 import { DContainer } from './components/itemDetailContainer/itemDetailContainer'
 import { Cart } from './components/shoppingCart/shoppingCart'
-import { CartUser} from '././context/cartContext'
 
 export const Routes = () => {
   return (
-      <CartUser>
         <Router>
             <main className="routes">
                 <NavBar/>
@@ -28,6 +26,5 @@ export const Routes = () => {
                     </Switch>
             </main>
         </Router>
-      </CartUser>
   );
 }
