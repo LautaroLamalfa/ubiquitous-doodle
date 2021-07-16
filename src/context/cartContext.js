@@ -1,54 +1,60 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext()
 
 export const CartUser = ({ children}) => {
     const [userCart, setUserCart] = useState([])
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState(0)
+    const [total, setTotal] = useState(0)
 
-    function removeItem (itemId) {
-        setProducts(products.filter(product => product.itemId !== itemId))
+    const clearCart = () => {
+        setUserCart([])
+        setProducts(0)
     }
 
-    function addToCart (item, contador) {
-        const isInCart = products.some( product => product.item.id === item[0].id)
-        if (!isInCart) {
-            const nuevoItem = {
-                item: {
-                    ...item[0]
-                },
-                quantity: contador
-            }
-            setProducts([...products, nuevoItem])
-        } else {
-            products.forEach( product => {
-                // eslint-disable-next-line
-                if(product.item.id == item[0].id) {
-                    return product.quantity += contador
-                }
-            })
-            setProducts([...products]);
+    const isInCart = (itemId) => {
+        return userCart.find((obj) => obj.item.id === parseInt(itemId)) ? true : false
+    }
 
+    const updateCart = (obj) => {
+        setUserCart([...userCart, obj])
+    }
+
+    const addToCart = (item, quantity) => {
+        if (isInCart(item.id)) {
+            const object = userCart.find((obj) => obj.item.id === item.id)
+            object.quantity += quantity
+            setProducts(parseInt(products) + parseInt(quantity))
+        }   else {
+            updateCart({ item, quantity })
+            setProducts(parseInt(products) + parseInt(quantity))
         }
     }
 
-    const clearCart = () => {
-        console.log('Carrito borrado');
-        setUserCart([])
-    }
+    const getOrder = () => {}
 
-    function addItem (item, contador) {
-        products.forEach( product => {
-            // eslint-disable-next-line
-            if(product.item.id == item.id) {
-                return product.quantity += contador
-            }
-        })
-        setProducts([...products]);
-    }
+        useEffect(() => {
+            
+                const nextTotal = userCart
+                .map(({item, quantity}) => item.price * quantity)
+                .reduce(
+                    (cartTotalPrice, currentItemPrice) => cartTotalPrice + currentItemPrice,
+                    0
+                )   
+        setTotal(nextTotal)
+        console.log('nextTotal', nextTotal);
+    }, [userCart])
 
+    
 
-    return <CartContext.Provider value={{userCart, products ,removeItem, clearCart, addItem, addToCart}}>
+    const removeItem = (itemId, quantity ) => {
+        const newCart = [...userCart]
+        const filterCart = newCart.filter((objeto) => objeto.item.id !== itemId)
+        setUserCart(filterCart)
+        setProducts(parseInt(products) - parseInt(quantity))
+     }
+
+    return <CartContext.Provider value={{userCart, products, total,removeItem, clearCart, addToCart, updateCart, getOrder}}>
                 {children}
            </CartContext.Provider>
 }

@@ -10,10 +10,10 @@ export const DList= ({ item }) => {
 
     const { addToCart } = useContext(CartContext)
 
-    const onAdd = (contador) => {
-        if (contador > 0) {
-            setProductoComprado(contador)
-            addToCart(item, contador)
+    const onAdd = (quantity) => {
+        if (quantity > 0) {
+            setProductoComprado(quantity)
+            addToCart(item, quantity)
         } 
         
     }

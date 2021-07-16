@@ -1,67 +1,49 @@
-import {useState, useEffect} from "react"
 import { List } from '../ItemList/itemList'
-import { useParams } from "react-router";
 import Loader from "react-loader-spinner";
+import { useEffect, useState } from 'react';
+import {database} from '../../Firebase/firebase'
 
 export const Container = () => {
-  const {id} = useParams()
-  const [catalogo, setCatalogo] = useState([])
+  const[loading, setloading] = useState() 
+  const[items, setItems] = useState() 
 
-  console.log(id);
-  
-    const Productos = [
-      {
-        id: '1', 
-        title: 'Sofa', 
-        description: 'Marron', 
-        stock: '10 unidades',
-        price: '$60',
-        categoryId: 'Ambiente'
-      },
-      {
-        id: '2', 
-        title: 'Television', 
-        description: '55 pulgadas', 
-        stock: '10 unidades' ,
-        price: '$120',
-        categoryId: 'Televisores'
-      },
-      {
-        id: '3', 
-        title: "Marvel's The Avengers", 
-        description: 'Blu-ray o en version digital', 
-        stock: '10 unidades',
-        price: '$12',
-        categoryId: 'Peliculas y Series'
-      },
-    ]
-    
-    
-    useEffect(() => {
-      const nuevaPromesa = new Promise((resolve, rej) => {
-        
-        setTimeout(() => {
-          resolve(Productos)
-          rej()
-        }, 2000);
-      })
+  useEffect(() => {
+    setloading(true);
+    const db = database();
+    const itemCollection = db.collection("Productos");
+    itemCollection.get().then((querySnapshot) => {
+      setItems(querySnapshot.docs.map(doc => doc.data()));
+    }).catch((error) => {
+      console.log("Error searching items", error);
+    }).finally(() => {
+      setloading(false);
+    });
 
-      nuevaPromesa.then((Productos) => {
-        const detalleProducto = id ? Productos.filter((item) => item.categoryId === id) : Productos 
-          setCatalogo(detalleProducto)
-      })
-      
-// eslint-disable-next-line
-    },[id])
-    
+  })
+
+
+    // useEffect(() => {
+    //   const db = getFirestore();
+
+    //   const itemCollection = db.collection('items');
+    //   const item = itemCollection.doc(itemId)
+
+    //   item.get().then((doc) => {
+    //     if (!doc.exists) {
+    //       console.log('Item does not exist! :( ');
+    //       return;
+    //     }
+    //     console.log('Item found');
+    //     setItems({ id: doc.id, ...doc.data() });
+    //   }).catch((error) => {
+    //     console.log("Error searching items", error);
+    //   }).finally(() => {
+    //     setloading(false)
+    //   });
+    // }, [] )
     return(
       <>
-        {catalogo.length === 0 ? (
-          <Loader type="Circles" color="#00BFFF" height={120} width={120} /> 
-        ) : (
-        <List items={catalogo}/>
-        )}
+        {items === undefined ? <Loader type="Circles" color="#00BFFF" height={120} width={120} /> : <List items = {items}/>}
       </>
     )
   };
-  
