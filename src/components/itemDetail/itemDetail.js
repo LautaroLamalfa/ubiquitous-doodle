@@ -1,48 +1,41 @@
 import './itemDetail.css'
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Counter} from '../ItemCount/itemCount'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/cartContext'
 
 export const DList= ({ item }) => {
-    const {id, title, price, description, stock=10} = item
-    const [productoComprado, setProductoComprado] = useState('')
+    
+    const [hidden, setHidden] = useState(false)
+    const [quantity, setQuantity] = useState(false)
 
     const { addToCart } = useContext(CartContext)
 
     const onAdd = (quantity) => {
-        if (quantity > 0) {
-            setProductoComprado(quantity)
-            addToCart(item, quantity)
-        } 
-        
+            setHidden(true)
+            setQuantity(quantity)
+            addToCart(item, quantity)   
     }
 
-    return (
-        <>
-            { item ? (
-                <div>
-                    <div className="container-D">
-                        <h2 className="titulo">{title}</h2>
-                        <h3>Precio:{price}</h3>
-                    </div>
-                    <div className="position" id={id}>
-                        <img src="" className="foto" alt="foto"/>
-                    </div>
-                        <div className="container-D">
-                            <Counter stock={stock} onAdd={onAdd}/>             
-                            <p>Entonces seran {productoComprado} {title}</p>
-                            { productoComprado ? (<Link to={"/cart"}><button>Terminar la compra</button></Link>) : ''}
-                        </div>
-                    <div>
-                        <p className="container">Descripcion: {description}</p>
-                    </div>
+   return (
+       <div>
+           <div>
+               <p>{item.title}</p>
+               <p>{item.description}</p>
+               <p>${item.price}</p>
+                <div hidden={hidden}>
+                        <Counter stock={item.stock} onAdd={onAdd}/>
+                        <p hidden={item.stock === 0 ? false : true}><span>Sin stock</span></p>
                 </div>
-        ) : ( 
-            <>
-            <span>...</span>
-            </>
-        )}
-        </>
-    )
+                <div hidden={!hidden}>
+                        <Link to='/cart'>
+                                <button>Ir al carrito</button>
+                        </Link>
+                        <Link to='/'>
+                                <button>Continuar Comprando</button>
+                        </Link>
+                </div>
+           </div>
+       </div>
+   )
 }
