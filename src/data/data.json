@@ -4,7 +4,7 @@
       "title": "Sofa", 
       "description": "Marron", 
       "stock": "10 unidades",
-      "price": "$60",
+      "price": "60",
       "categoryId": "Ambiente"
     },
     {
@@ -12,7 +12,7 @@
       "title": "Television", 
       "description": "55 pulgadas", 
       "stock": "10 unidades" ,
-      "price": "$120",
+      "price": "120",
       "categoryId": "Televisores"
     },
     {
@@ -20,7 +20,7 @@
       "title": "Marvel's The Avengers", 
       "description": "Blu-ray o en version digital", 
       "stock": "10 unidades",
-      "price": "$12",
+      "price": "12",
       "categoryId": "Peliculas y Series"
     }
   ]

@@ -2,28 +2,35 @@ import { List } from '../ItemList/itemList'
 import Loader from "react-loader-spinner";
 import { useEffect, useState } from 'react';
 import {database} from '../../Firebase/firebase'
+import { useParams } from 'react-router-dom';
 
 export const Container = () => {
-  // eslint-disable-next-line
   const[loading, setloading] = useState(true) 
   const[items, setItems] = useState() 
+  const {id} = useParams()
 
+  console.log(loading);
   useEffect(() => {
     const db = database;
     const itemCollection = db.collection("Productos");
-    itemCollection.get().then((querySnapshot) => {
-      setItems(querySnapshot.docs.map(doc => doc.data()));
+
+    let catalogo
+    id? catalogo = itemCollection.where('id','==', id) : catalogo=itemCollection
+    catalogo.get().then((querySnapshot)=> {
+      const filtrados = querySnapshot.docs.map(doc => ( {id: doc.id, ...doc.data() }))
+      setItems(filtrados)
     }).catch((error) => {
       console.log("Error searching items", error);
     }).finally(() => {
       setloading(false);
     });
 
-  })
+    
+  }, [id]);
   
     return(
       <>
         {items === undefined ? <Loader type="Circles" color="#00BFFF" height={120} width={120} /> : <List items = {items}/>}
       </>
     )
-  };
+  }

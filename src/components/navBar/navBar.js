@@ -1,26 +1,9 @@
 import './navBar.css';
-import { Link, NavLink,  } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { CartWidget } from '../CartWidget/cartWidget.js'
 import img from  '../../Assets/Imagenes/Logo.png'
-// import { useState } from 'react';
-// import { database } from '../../Firebase/firebase';
 export const NavBar = () => {
 
-    // const { categoryId} = useParams();
-    // // eslint-disable-next-line
-    // const [filterProducts, setFilterProducts] = useState([])
-    // // eslint-disable-next-line
-    // const [loading, setLoading] = useState(true)
-    // const db = database
-    // const itemCollection = db.collection("Productos")
-    // const itemFilter = itemCollection.where("category", '==', categoryId)
-    // itemFilter.get().then((querySnapshot) => {
-    //     setFilterProducts(querySnapshot.docs.map(doc => doc.data()))
-    // }).catch((err) => {
-    //     console.log('Error filtrando por categoria', err);
-    // }).finally(() => {
-    //     setLoading(false)
-    // })
 
     return (
         <header className="navbar">   

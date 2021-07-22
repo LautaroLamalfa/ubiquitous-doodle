@@ -25,30 +25,20 @@ export const Cart = () => {
                               <p>Cantidad</p>
                               <p>Subtotal</p>
                           </div>
-                          {userCart.map(({item, quantity}, index) => {
+                          {userCart.map(({item, quantity}) => {
                             return (
                               <div>
-                                  <p>{index + 1}</p>
                                   <p>{item.title}</p>
                                   <p>{quantity}</p>
-                                  <p>${(item.price).toLocaleString('es-AR', {
-                                                      valute: 'USD',
-                                                      minimumFractionDigits: 0,})}
-                                  </p>
-                                  <p>$ {(item.price * quantity).toLocaleString('es-AR', {
-                                                      valute: 'USD',
-                                                      minimumFractionDigits: 0,})}
-                                  </p>
+                                  <p>{(item.price)}</p>
+                                  <p>$ {parseInt(item.price) * parseInt(quantity)}</p>
                                   <button onClick={() => removeItem(item.id, quantity)}>Eliminar</button>
                               </div>
                             )
                           } 
                         )}
                     </div>
-                    <p>Precio Total:  <span>{total.toLocaleString('es-AR', {
-                                            valute: 'USD',
-                                            minimumFractionDigits: 0,
-                                  })}</span>
+                    <p>Precio Total:  <span>{total}</span>
                     </p>
                     <button onClick={() => clearCart()} >Limpiar Carrito</button>
                     <button onClick={() => endPurchase()}>Finalizar Compra</button>

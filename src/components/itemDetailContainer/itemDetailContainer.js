@@ -5,10 +5,11 @@ import Loader from "react-loader-spinner";
 import {database} from '../../Firebase/firebase'
 // import Data from "../../data/data.json"
 
-export const DContainer = () => {
-  const [item, setItem] = useState({})
+export const DContainer = () => { 
+  const [item, setItem] = useState('')
   const [loading, setLoading] = useState(true)
   const {id} = useParams()
+  console.log(loading);
 
   useEffect(()=> {
     const db = database;
@@ -29,13 +30,11 @@ export const DContainer = () => {
       setLoading(false);
     });
   }, [id]);
-
-
-
-      return(
-      <>
+  
+  return(
+    <>
         {
-          loading ? (
+          item.length === 0 ? (
               <Loader type="Grid" color="#ff4500" height={120} width={120} /> 
           ) : (
             <div>

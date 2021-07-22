@@ -1,5 +1,5 @@
 import './itemDetail.css'
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import {Counter} from '../ItemCount/itemCount'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/cartContext'
@@ -7,6 +7,7 @@ import { CartContext } from '../../context/cartContext'
 export const DList= ({ item }) => {
     
     const [hidden, setHidden] = useState(false)
+    // eslint-disable-next-line
     const [quantity, setQuantity] = useState(false)
 
     const { addToCart } = useContext(CartContext)
@@ -22,7 +23,7 @@ export const DList= ({ item }) => {
            <div>
                <p>{item.title}</p>
                <p>{item.description}</p>
-               <p>${item.price}</p>
+               <p>{item.price}</p>
                 <div hidden={hidden}>
                         <Counter stock={item.stock} onAdd={onAdd}/>
                         <p hidden={item.stock === 0 ? false : true}><span>Sin stock</span></p>

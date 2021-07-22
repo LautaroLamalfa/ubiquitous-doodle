@@ -25,12 +25,12 @@ export const CartUser = ({ children}) => {
 
     const addToCart = (item, quantity) => {
         if (isInCart(item.id)) {
-            const object = userCart.find(obj => obj.item.id === item.id)
+            const object = userCart.find((obj) => obj.item.id === item.id)
             object.quantity += quantity
-            setProducts(parseFloat(products) + parseFloat(quantity))
+            setProducts(parseInt(products) + parseInt(quantity))
         }   else {
             updateCart({ item, quantity })
-            setProducts(parseFloat(products) + parseFloat(quantity))
+            setProducts(parseInt(products) + parseInt(quantity))
         }
     }
 
@@ -51,7 +51,7 @@ export const CartUser = ({ children}) => {
 
         useEffect(() => {
             
-                const nextTotal = userCart.map(({item, quantity}) => item.price * quantity)
+                const nextTotal = userCart.map(({item, quantity}) => parseInt(item.price) * parseInt(quantity))
                 .reduce(
                     (cartTotalPrice, currentItemPrice) => cartTotalPrice + currentItemPrice, 0 )   
         setTotal(nextTotal)
