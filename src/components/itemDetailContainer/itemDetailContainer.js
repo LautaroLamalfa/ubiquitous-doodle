@@ -8,16 +8,16 @@ import {database} from '../../Firebase/firebase'
 export const DContainer = () => { 
   const [item, setItem] = useState('')
   const [loading, setLoading] = useState(true)
-  const {id} = useParams()
+  const {itemId} = useParams()
   console.log(loading);
 
   useEffect(()=> {
     const db = database;
 
     const itemCollection = db.collection("Productos")
-    const item = itemCollection.doc(id);
+    const producto = itemCollection.doc(itemId);
 
-    item.get().then((doc) => {
+    producto.get().then((doc) => {
       if (!doc.exists) {
         console.log("Producto no existe :( ");
         return;
@@ -29,7 +29,7 @@ export const DContainer = () => {
     }).finally(() => {
       setLoading(false);
     });
-  }, [id]);
+  }, [itemId]);
   
   return(
     <>

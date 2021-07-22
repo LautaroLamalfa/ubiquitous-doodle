@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import firebase from 'firebase/app'
 import {database} from '../Firebase/firebase'
+import { formInput } from "../data/formInput";
 
 export const CartContext = createContext()
 
@@ -39,15 +40,16 @@ export const CartUser = ({ children}) => {
             ({ item, quantity }) => ({ id: item.id, title: item.title, price: item.price, quantity: quantity }))
         return {
             buyer: {
-                name: 'UserName',
-                phone: '+54 9 11 9357 0368',
-                email: 'comprador@gmail.com'
+                name: formInput.name,
+                phone: formInput.surname,
+                email: formInput.mail
             },
             items: orderItems,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total,
         }
     }
+
 
         useEffect(() => {
             
@@ -58,15 +60,17 @@ export const CartUser = ({ children}) => {
         console.log('nextTotal', nextTotal);
     }, [userCart])
 
-    const endPurchase = () => {
-        const newOrder = getOrder();
+    const endPurchase = (buyer) => {
+        const newOrder = getOrder(buyer);
         const db = database;
         const pedidos = db.collection("pedidos");
         pedidos.add(newOrder).then(({id}) => {
             setOrderId(id);
+            alert(`Gracias por su compra. Su codigo es ${id}. `)
         }).catch((err) => {
             console.log("Error finalizando su compra", err);
         }).finally(() => {
+            clearCart()
             console.log('setOrderId', orderId);
         })
     }

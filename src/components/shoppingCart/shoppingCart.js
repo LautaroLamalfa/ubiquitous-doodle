@@ -1,10 +1,49 @@
 import './shoppingCart.css'
-import { Fragment, useContext} from "react"
+import { Fragment, useContext, useEffect, useState} from "react"
 import { CartContext } from "../../context/cartContext"
 import { Link } from 'react-router-dom'
+import { formInput } from "../../data/formInput";
+import { Form } from "../Form/form";
 
 export const Cart = () => {
-  const {userCart, removeItem, clearCart, total, endPurchase} = useContext(CartContext)
+  const {userCart,  clearCart, removeItem, endPurchase, total} = useContext(CartContext)
+  const [formData, setFormData] = useState(formInput);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [buyerData, setBuyerData] = useState({name: '', surname: '', mail: ''});
+  
+  useEffect(() => {
+    const requiredInputs = formData.filter(({required}) => required);
+    const isSomeRequiredInputEmpty = requiredInputs.some(({ value }) => !value);
+        if (isSomeRequiredInputEmpty) {
+            setIsSubmitDisabled(true);
+  } else {
+    const searchMailIndex = formData.findIndex((obj => obj.name === 'mail'))
+    const searchMailConfir = formData.findIndex((obj => obj.name === 'Confirmacion de mail'))
+    if (formData[searchMailIndex].value === formData[searchMailConfir].value) {
+         setIsSubmitDisabled(false);
+    }
+  }
+  
+  }, [formData]);
+
+  const onInput = ({target}) => {
+    const nextFormData = [...formData]
+    const searchObjIndex = nextFormData.findIndex((obj => obj.name === target.name))
+    nextFormData[searchObjIndex].value = target.value
+    setFormData(nextFormData)
+  };
+
+  const submitCompra = () => {
+    const newBuyerData = {...buyerData}
+    const searchObjNameIndex = formData.findIndex((obj => obj.name === 'name'))
+    const searchObjSurnameIndex = formData.findIndex((obj => obj.name === 'surname'))
+    const searchObjMailIndex = formData.findIndex((obj => obj.name === 'mail'))
+    newBuyerData.name = formData[searchObjNameIndex].value
+    newBuyerData.surname = formData[searchObjSurnameIndex].value
+    newBuyerData.mail = formData[searchObjMailIndex].value
+    setBuyerData(newBuyerData)
+    endPurchase(newBuyerData)
+  }
 
   return(
     <Fragment>
@@ -40,8 +79,9 @@ export const Cart = () => {
                     </div>
                     <p>Precio Total:  <span>{total}</span>
                     </p>
+                    <Form formInput={formData} onInput={(e) => onInput(e)} />
                     <button onClick={() => clearCart()} >Limpiar Carrito</button>
-                    <button onClick={() => endPurchase()}>Finalizar Compra</button>
+                    <button onClick={() => submitCompra()} disabled={isSubmitDisabled}>Finalizar Compra</button>
               </div>
           </Fragment>
         )
