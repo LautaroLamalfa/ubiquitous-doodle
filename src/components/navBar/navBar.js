@@ -12,13 +12,13 @@ export const NavBar = () => {
                     <Link to='/'>
                     <img src={img} className="logo" alt="logo"/>
                     </Link>
-                    <NavLink to="/category/Peliculas y Series">
+                    <NavLink to="/categoryId/Peliculas y series">
                         <li>Peliculas y Series</li>
                     </NavLink>
-                    <NavLink to="/category/Televisores">
+                    <NavLink to="/categoryId/Televisores">
                         <li>Televisores</li>
                     </NavLink>
-                    <NavLink to="/category/Ambiente">
+                    <NavLink to="/categoryId/Ambiente">
                         <li>Ambiente</li>
                     </NavLink>
                     <CartWidget/>
