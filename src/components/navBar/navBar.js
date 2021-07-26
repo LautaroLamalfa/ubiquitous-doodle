@@ -2,8 +2,8 @@ import './navBar.css';
 import { Link, NavLink } from 'react-router-dom'
 import { CartWidget } from '../CartWidget/cartWidget.js'
 import img from  '../../Assets/Imagenes/Logo.png'
-export const NavBar = () => {
 
+export const NavBar = () => {
 
     return (
         <header className="navbar">   
@@ -12,13 +12,13 @@ export const NavBar = () => {
                     <Link to='/'>
                     <img src={img} className="logo" alt="logo"/>
                     </Link>
-                    <NavLink to="/categoryId/Peliculas y series">
+                    <NavLink to="/categoria/peliculas y series">
                         <li>Peliculas y Series</li>
                     </NavLink>
-                    <NavLink to="/categoryId/Televisores">
+                    <NavLink to="/categoria/televisores">
                         <li>Televisores</li>
                     </NavLink>
-                    <NavLink to="/categoryId/Ambiente">
+                    <NavLink to="/categoria/ambiente">
                         <li>Ambiente</li>
                     </NavLink>
                     <CartWidget/>

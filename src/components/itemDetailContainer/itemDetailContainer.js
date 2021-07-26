@@ -3,19 +3,18 @@ import { useParams } from "react-router";
 import { DList } from "../../components/itemDetail/itemDetail"
 import Loader from "react-loader-spinner";
 import {database} from '../../Firebase/firebase'
-// import Data from "../../data/data.json"
-
 export const DContainer = () => { 
   const [item, setItem] = useState('')
   const [loading, setLoading] = useState(true)
-  const {itemId} = useParams()
+  const {id} = useParams()
+  console.log(id);
   console.log(loading);
 
   useEffect(()=> {
     const db = database;
 
     const itemCollection = db.collection("Productos")
-    const producto = itemCollection.doc(itemId);
+    const producto = itemCollection.doc(id);
 
     producto.get().then((doc) => {
       if (!doc.exists) {
@@ -29,7 +28,7 @@ export const DContainer = () => {
     }).finally(() => {
       setLoading(false);
     });
-  }, [itemId]);
+  }, [id]);
   
   return(
     <>

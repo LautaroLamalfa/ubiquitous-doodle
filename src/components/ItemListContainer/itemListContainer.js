@@ -5,10 +5,11 @@ import {database} from '../../Firebase/firebase'
 import { useParams } from 'react-router-dom';
 
 export const Container = () => {
-  const[loading, setloading] = useState(true) 
-  const[items, setItems] = useState() 
+  const [loading, setloading] = useState(true) 
+  const [items, setItems] = useState([]) 
   const {categoryId} = useParams()
 
+  console.log(categoryId);
   console.log(loading);
   useEffect(() => {
     const db = database;
@@ -16,6 +17,7 @@ export const Container = () => {
     let catalogo
     categoryId? catalogo = itemCollection.where('categoryId','==', categoryId) : catalogo=itemCollection
     catalogo.get().then((querySnapshot)=> {
+
       const filtrados = querySnapshot.docs.map(doc => ( {id: doc.id, ...doc.data() }))
       setItems(filtrados)
     }).catch((error) => {

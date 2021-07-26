@@ -51,7 +51,7 @@ export const Cart = () => {
         userCart.length === 0 ?
         (
         <div> 
-          <p>Aun no compraste nada. Anda a <Link to="/">comprar</Link></p>
+          <p className='to-home'>Aun no compraste nada. Anda a <Link to="/">comprar</Link></p>
         </div>
         ) : (
           <Fragment>
