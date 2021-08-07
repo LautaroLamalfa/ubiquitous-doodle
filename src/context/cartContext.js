@@ -1,7 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import firebase from 'firebase/app'
-import {database} from '../Firebase/firebase'
-import { formInput } from "../data/formInput";
 
 export const CartContext = createContext()
 
@@ -9,7 +6,16 @@ export const CartUser = ({ children}) => {
     const [userCart, setUserCart] = useState([])
     const [products, setProducts] = useState(0)
     const [total, setTotal] = useState(0)
-    const [orderId, setOrderId] = useState("")
+
+    const addToCart = (item, quantity) => {  
+        if (isInCart(item.id)) {
+            const object = userCart.find(obj => obj.item.id === item.id)
+            object.quantity = object.quantity += quantity
+            setProducts(parseInt(products) + parseInt(quantity))
+        }   else {
+            updateCart({ item, quantity })
+        }
+    }
 
     const clearCart = () => {
         setUserCart([])
@@ -24,56 +30,25 @@ export const CartUser = ({ children}) => {
         setUserCart([...userCart, obj])
     }
 
-    const addToCart = (item, quantity) => {
-        if (isInCart(item.id)) {
-            const object = userCart.find((obj) => obj.item.id === item.id)
-            object.quantity += quantity
-            setProducts(parseInt(products) + parseInt(quantity))
-        }   else {
-            updateCart({ item, quantity })
-            setProducts(parseInt(products) + parseInt(quantity))
-        }
-    }
+    console.log(updateCart);
 
-    const getOrder = () => {
-        const orderItems = userCart.map(
-            ({ item, quantity }) => ({ id: item.id, title: item.title, price: item.price, quantity: quantity }))
-        return {
-            buyer: {
-                name: formInput.name,
-                phone: formInput.surname,
-                email: formInput.mail
-            },
-            items: orderItems,
-            date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total,
+    const widjetNumber = (userCart) => {
+        let totalItems = 0
+        if (userCart.length > 0) {
+            userCart.forEach((item) => totalItems += item.quantity)
         }
+        setProducts(totalItems)
     }
-
 
         useEffect(() => {
             
-                const nextTotal = userCart.map(({item, quantity}) => parseInt(item.price) * parseInt(quantity))
-                .reduce(
-                    (cartTotalPrice, currentItemPrice) => cartTotalPrice + currentItemPrice, 0 )   
+                const nextTotal = userCart.map(({item, quantity}) => item.price * quantity)
+                .reduce((cartTotalPrice, currentItemPrice) => cartTotalPrice + currentItemPrice, 0 )   
         setTotal(nextTotal)
+        widjetNumber(userCart)
         console.log('nextTotal', nextTotal);
     }, [userCart])
 
-    const endPurchase = (buyer) => {
-        const newOrder = getOrder(buyer);
-        const db = database;
-        const pedidos = db.collection("pedidos");
-        pedidos.add(newOrder).then(({id}) => {
-            setOrderId(id);
-            alert(`Gracias por su compra. Su codigo es ${id}. `)
-        }).catch((err) => {
-            console.log("Error finalizando su compra", err);
-        }).finally(() => {
-            clearCart()
-            console.log('setOrderId', orderId);
-        })
-    }
 
     const removeItem = (itemId, quantity ) => {
         const newCart = [...userCart]
@@ -82,7 +57,7 @@ export const CartUser = ({ children}) => {
         setProducts(parseFloat(products) - parseFloat(quantity))
      }
 
-    return <CartContext.Provider value={{userCart, products, total, orderId, removeItem, clearCart, addToCart, updateCart, endPurchase}}>
+    return <CartContext.Provider value={{userCart, products, total, removeItem, clearCart, addToCart}}>
                 {children}
            </CartContext.Provider>
 }

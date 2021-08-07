@@ -1,13 +1,14 @@
-* {
+.border {
     box-sizing: border-box;
 }
 
 .container-D {
-        display:ruby;
-        padding: 0 50px 30px;
-        border: 2px double red ;
-        border-radius: 25px;
-        margin: 100px;
+    display:ruby;
+    padding: 0 50px 30px;
+    background: #eee;
+    box-shadow: 0 8px 8px -4px lightblue;
+    border-radius: 25px;
+    margin: 100px;
 }
 
 .position {
@@ -18,7 +19,33 @@
     font-size: xx-large;
 }
 
-.foto {
-    float: left;
+.price {
+    font-size: x-large;
+}
+
+.button-D {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.cartButton {
+    height: 35px;
+    width: 120px;
+}
+
+.cartButton:hover {
+    background-color: blue;
+    transition: 0.8s;
+}
+
+.homeButton {
+    height: 35px;
+    width: 150px;
+}
+
+.homeButton:hover {
+    background-color: orangered;
+    transition: 0.8s;
 }
 

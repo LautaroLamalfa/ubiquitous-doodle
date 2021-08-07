@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect, Fragment} from "react"
 import { useParams } from "react-router";
 import { DList } from "../../components/itemDetail/itemDetail"
 import Loader from "react-loader-spinner";
@@ -31,17 +31,14 @@ export const DContainer = () => {
   }, [id]);
   
   return(
-    <>
+    <Fragment>
         {
           item.length === 0 ? (
               <Loader type="Grid" color="#ff4500" height={120} width={120} /> 
-          ) : (
-            <div>
-                  <DList item={item}/>
-            </div>
-          )
+              
+          ) : ( <DList item={item}/> )
         }
-      </>
+      </Fragment>
     )
   
   };

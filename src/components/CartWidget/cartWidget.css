@@ -2,3 +2,19 @@
     width: 60px;
     height: 60px;
 }
+
+.visible {
+    visibility: visible;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.totalItems {
+    position: absolute;
+    font-weight: 100;
+    font-family:fantasy;
+    color: tomato;   
+}
+

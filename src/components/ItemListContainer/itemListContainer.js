@@ -1,6 +1,6 @@
 import { List } from '../ItemList/itemList'
 import Loader from "react-loader-spinner";
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {database} from '../../Firebase/firebase'
 import { useParams } from 'react-router-dom';
 
@@ -30,8 +30,13 @@ export const Container = () => {
   }, [categoryId]);
   
     return(
-      <>
-        {items === undefined ? <Loader type="Circles" color="#00BFFF" height={120} width={120} /> : <List items = {items}/>}
-      </>
+      <Fragment>
+        {
+          items.length === 0 ? (
+               <Loader type="Circles" color="#00BFFF" height={120} width={120} />
+             
+             ) : (<List items = {items}/>)
+        }
+      </Fragment>
     )
   }
