@@ -7,15 +7,15 @@ import { useParams } from 'react-router-dom';
 export const Container = () => {
   const [loading, setloading] = useState(true) 
   const [items, setItems] = useState([]) 
-  const {categoryId} = useParams()
+  const {id} = useParams()
 
-  console.log(categoryId);
+  console.log(id);
   console.log(loading);
   useEffect(() => {
     const db = database;
     const itemCollection = db.collection("Productos");
     let catalogo
-    categoryId? catalogo = itemCollection.where('categoryId','==', categoryId) : catalogo=itemCollection
+    id? catalogo = itemCollection.where('id','==', id) : catalogo=itemCollection
     catalogo.get().then((querySnapshot)=> {
 
       const filtrados = querySnapshot.docs.map(doc => ( {id: doc.id, ...doc.data() }))
@@ -27,7 +27,7 @@ export const Container = () => {
     });
 
     
-  }, [categoryId]);
+  }, [id]);
   
     return(
       <Fragment>

@@ -9,7 +9,7 @@ export const NavBar = () => {
                 <div>
                     <ul className="navbar-container">
                         <NavLink to='/'><img src={img} className="logo" alt="logo"/></NavLink>
-                        <NavLink to="/categoryId/peliculas y series">
+                        <NavLink to="/categoryId/peliculas-y-series">
                             <li>Peliculas y Series</li>
                         </NavLink>
                         <NavLink to="/categoryId/televisores">

@@ -14,13 +14,13 @@ export const Routes = () => {
                         <Route exact path="/">
                             <Container />
                         </Route>
-                        <Route exact path="/category/:id">
+                        <Route path=":categoryId/:categoryId">
                             <Container />
                         </Route>
-                        <Route exact path="/item/:id">
+                        <Route path="/item/:id">
                             <DContainer />
                         </Route>
-                        <Route exact path="/cart">
+                        <Route path="/cart">
                             <Cart/>
                         </Route>
                     </Switch>
