@@ -23,7 +23,7 @@ export const CartUser = ({ children}) => {
     }
 
     const isInCart = (itemId) => {
-        return userCart.find((obj) => obj.item.id === parseInt(itemId)) ? true : false
+        return userCart.find((obj) => obj.item.id === itemId)
     }
 
     const updateCart = (obj) => {

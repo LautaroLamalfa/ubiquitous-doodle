@@ -9,13 +9,13 @@ export const NavBar = () => {
                 <div>
                     <ul className="navbar-container">
                         <NavLink to='/'><img src={img} className="logo" alt="logo"/></NavLink>
-                        <NavLink to="/categoryId/peliculas-y-series">
+                        <NavLink to="/category/peliculas-y-series">
                             <li>Peliculas y Series</li>
                         </NavLink>
-                        <NavLink to="/categoryId/televisores">
+                        <NavLink to="/category/televisores">
                             <li>Televisores</li>
                         </NavLink>
-                        <NavLink to="/categoryId/ambiente">
+                        <NavLink to="/category/ambiente">
                             <li>Ambiente</li>
                         </NavLink>
                         <CartWidget/>

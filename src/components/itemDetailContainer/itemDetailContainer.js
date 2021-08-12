@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { DList } from "../../components/itemDetail/itemDetail"
 import Loader from "react-loader-spinner";
 import {database} from '../../Firebase/firebase'
-export const DContainer = () => { 
+export const ItemDetailContainer = () => { 
   const [item, setItem] = useState('')
   const [loading, setLoading] = useState(true)
   const {id} = useParams()

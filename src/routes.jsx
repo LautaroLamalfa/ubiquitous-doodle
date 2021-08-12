@@ -1,8 +1,8 @@
 import './routes.css'
 import {BrowserRouter as Router,  Switch,  Route} from "react-router-dom"
 import { NavBar } from './components/navBar/navBar'
-import { Container } from './components/ItemListContainer/itemListContainer'
-import { DContainer } from './components/itemDetailContainer/itemDetailContainer'
+import { ItemListContainer } from './components/itemListContainer/itemListContainer'
+import { ItemDetailContainer } from './components/itemDetailContainer/itemDetailContainer'
 import { Cart } from './components/shoppingCart/shoppingCart'
 
 export const Routes = () => {
@@ -12,13 +12,13 @@ export const Routes = () => {
                 <NavBar/>
                     <Switch>
                         <Route exact path="/">
-                            <Container />
+                            <ItemListContainer />
                         </Route>
-                        <Route path=":categoryId/:categoryId">
-                            <Container />
+                        <Route path="/category/:id">
+                            <ItemListContainer />
                         </Route>
                         <Route path="/item/:id">
-                            <DContainer />
+                            <ItemDetailContainer />
                         </Route>
                         <Route path="/cart">
                             <Cart/>
