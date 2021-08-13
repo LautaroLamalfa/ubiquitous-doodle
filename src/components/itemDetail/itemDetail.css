@@ -1,51 +1,51 @@
 .border {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container-D {
-    display:ruby;
-    padding: 0 50px 30px;
-    background: #eee;
-    box-shadow: 0 8px 8px -4px lightblue;
-    border-radius: 25px;
-    margin: 100px;
+  display: ruby;
+  padding: 0 50px 30px;
+  background: #eee;
+  box-shadow: 0 8px 8px -4px lightblue;
+  border-radius: 25px;
+  margin: 100px;
 }
 
 .position {
-    text-align:center;
+  text-align: center;
 }
 
 .titulo {
-    font-size: xx-large;
+  font-family: "Times New Roman", Times, serif;
+  font-size: xx-large;
 }
 
 .price {
-    font-size: x-large;
+  font-size: x-large;
 }
 
 .button-D {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .cartButton {
-    height: 35px;
-    width: 120px;
+  height: 35px;
+  width: 120px;
 }
 
 .cartButton:hover {
-    background-color: blue;
-    transition: 0.8s;
+  background-color: blue;
+  transition: 0.8s;
 }
 
 .homeButton {
-    height: 35px;
-    width: 150px;
+  height: 35px;
+  width: 150px;
 }
 
 .homeButton:hover {
-    background-color: orangered;
-    transition: 0.8s;
+  background-color: orangered;
+  transition: 0.8s;
 }
-

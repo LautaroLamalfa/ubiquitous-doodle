@@ -8,14 +8,10 @@ export const DList= ({ item }) => {
     
     const [hidden, setHidden] = useState(false)
 
-    const [quantity, setQuantity] = useState(false)
-    console.log(quantity);
-
     const { addToCart } = useContext(CartContext)
 
     const onAdd = (quantity) => {
             setHidden(true)
-            setQuantity(quantity)
             addToCart(item, quantity)   
     }
 
