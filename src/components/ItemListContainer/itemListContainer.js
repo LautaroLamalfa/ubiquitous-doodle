@@ -1,4 +1,4 @@
-import { List } from '../ItemList/itemList'
+import { List } from '../itemList/itemList'
 import Loader from "react-loader-spinner";
 import { Fragment, useEffect, useState } from 'react';
 import {database} from '../../Firebase/firebase'
