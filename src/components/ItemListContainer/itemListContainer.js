@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from 'react';
 import {database} from '../../Firebase/firebase'
 import { useParams } from 'react-router-dom';
 
-export const ItemListContainer = () => {
+export const Itemlistcontainer = () => {
   const [loading, setloading] = useState(true) 
   const [items, setItems] = useState([]) 
   const {id} = useParams()

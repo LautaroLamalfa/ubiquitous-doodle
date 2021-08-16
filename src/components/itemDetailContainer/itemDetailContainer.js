@@ -1,6 +1,6 @@
 import {useState, useEffect, Fragment} from "react"
 import { useParams } from "react-router";
-import { DList } from "../../components/itemDetail/itemDetail"
+import { DList } from "../itemDetail/itemDetail"
 import Loader from "react-loader-spinner";
 import {database} from '../../Firebase/firebase'
 export const ItemDetailContainer = () => { 
