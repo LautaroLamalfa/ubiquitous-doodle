@@ -1,7 +1,7 @@
 import './routes.css'
 import {BrowserRouter as Router,  Switch,  Route} from "react-router-dom";
 import { NavBar } from '../src/components/navBar/navBar';
-import { ItemListContainer } from '../src/components/itemListContainer/itemListContainer';
+import { ItemListContainer } from './components/itemListContainer/itemListContainer';
 import { ItemDetailContainer } from '../src/components/ItemDetailContainer/itemDetailContainer';
 import { Cart } from '../src/components/shoppingCart/shoppingCart';
 
