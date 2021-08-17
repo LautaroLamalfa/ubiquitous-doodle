@@ -1,8 +1,8 @@
 import './routes.css'
 import {BrowserRouter as Router,  Switch,  Route} from "react-router-dom";
 import { Cart } from './components/shoppingCart/shoppingCart';
-import { ItemListContainer } from './components/itemListContainer/ItemListContainer';
 import { ItemDetailContainer } from './components/itemDetailContainer/ItemDetailContainer';
+import { ItemListContainer } from './components/itemListContainer/ItemListContainer';
 import { NavBar } from './components/navBar/navBar'
 
 export const Routes = () => {
