@@ -1,9 +1,9 @@
 import './routes.css'
 import {BrowserRouter as Router,  Switch,  Route} from "react-router-dom";
-import { Cart } from './components/shoppingCart/shoppingCart';
-import { ItemDetailContainer } from './components/ItemDetailContainer/itemDetailContainer';
-import { ItemListContainer } from './components/itemListContainer/itemListContainer';
 import { NavBar } from './components/navBar/navBar'
+import { Cart } from './components/shoppingCart/shoppingCart';
+import { ItemDetailContainer } from './components/itemDetailContainer/itemDetailContainer';
+import { ItemListContainer } from './components/itemListContainer/itemListContainer';
 
 export const Routes = () => {
   return (
